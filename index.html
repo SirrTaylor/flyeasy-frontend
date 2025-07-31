@@ -46,6 +46,76 @@
             -webkit-backdrop-filter: blur(8px); /* For Safari */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
+
+        /* Custom styles for the message box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .message-box {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-50px);
+            opacity: 0;
+            animation: fadeInDown 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .message-box.error {
+            background-color: #fee2e2; /* Red-100 */
+            border: 1px solid #ef4444; /* Red-500 */
+            color: #b91c1c; /* Red-700 */
+        }
+
+        .message-box.success {
+            background-color: #dcfce7; /* Green-100 */
+            border: 1px solid #22c55e; /* Green-500 */
+            color: #166534; /* Green-700 */
+        }
+
+        .message-box h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem;
+        }
+
+        .message-box p {
+            font-size: 1rem; /* text-base */
+            margin-bottom: 1.5rem;
+        }
+
+        .message-box button {
+            background-color: #2563eb; /* blue-700 */
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            transition: background-color 0.3s ease;
+        }
+
+        .message-box button:hover {
+            background-color: #1d4ed8; /* blue-800 */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -57,7 +127,6 @@
             <a href="#" class="block h-24">
                 <img src="Flyeasy.png" alt="Fly Easy Logo" class="h-full w-auto object-contain">
             </a>
-
 
             <!-- Desktop Navigation Menu - Always visible on medium and larger screens -->
             <nav id="desktop-nav" class="hidden md:flex space-x-8">
@@ -110,7 +179,7 @@
                     Detailed Inquiry
                 </button>
                 <button id="btn-simplified" class="px-6 py-3 rounded-r-lg font-semibold text-lg transition duration-300 ease-in-out
-                                                  bg-gray-200 text-gray-800 hover:bg-gray-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                                                 bg-gray-200 text-gray-800 hover:bg-gray-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
                     Simplified Inquiry
                 </button>
             </div>
@@ -134,10 +203,10 @@
                         <div class="md:col-span-2">
                             <label for="inquiry-details" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Tell us about your travel plans (e.g., destination, dates, preferences)</label>
                             <textarea id="inquiry-details" name="inquiry-details" rows="5" placeholder="I'm planning a trip to Paris in October for 7 days, looking for a romantic getaway with good food options..." required
-                                      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800 resize-y"></textarea>
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800 resize-y"></textarea>
                         </div>
                         <div class="md:col-span-2">
-                            <button type="submit"
+                            <button type="submit" id="submit-detailed"
                                     class="w-full bg-blue-800 text-white py-3 px-6 rounded-lg font-semibold text-lg
                                            hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2
                                            transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
@@ -182,7 +251,7 @@
                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
                         </div>
                         <div class="md:col-span-2">
-                            <button type="submit"
+                            <button type="submit" id="submit-simplified"
                                     class="w-full bg-blue-800 text-white py-3 px-6 rounded-lg font-semibold text-lg
                                            hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2
                                            transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
@@ -449,248 +518,182 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <div class="mb-4 md:mb-0">
                 <p>&copy; 2025 Fly Easy. All rights reserved.</p>
-                <p class="text-sm">Based in Zimbabwe, serving the world.</p>
             </div>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
-                <a href="#terms-conditions" class="hover:text-white transition duration-300">Terms of Service</a>
-                <a href="#" class="hover:text-white transition duration-300">Sitemap</a>
-            </div>
+            <nav class="flex flex-wrap justify-center md:justify-end space-x-4">
+                <a href="#about" class="hover:text-white transition duration-300">About Us</a>
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
+                <a href="#terms-conditions" class="hover:text-white transition duration-300">Terms & Conditions</a>
+            </nav>
         </div>
     </footer>
 
-    <!-- JavaScript File Link -->
+    <!-- Custom Message Box HTML -->
+    <div id="message-box-container" class="message-box-overlay hidden">
+        <div id="message-box" class="message-box">
+            <h3 id="message-box-title"></h3>
+            <p id="message-box-content"></p>
+            <button id="message-box-close">OK</button>
+        </div>
+    </div>
+
     <script>
-        // script.js
-    document.addEventListener('DOMContentLoaded', () => {
-    // Get the mobile menu button and the mobile menu itself
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const desktopNavLinks = document.querySelectorAll('#desktop-nav .nav-link');
-    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
-    const header = document.querySelector('header');
+        // --- Mobile Menu Toggle Logic ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
 
-    // Get the form type selection buttons
-    const btnDetailed = document.getElementById('btn-detailed');
-    const btnSimplified = document.getElementById('btn-simplified');
-
-    // Get the form sections
-    const detailedFormSection = document.getElementById('detailed-form-section');
-    const simplifiedFormSection = document.getElementById('simplified-form-section');
-
-    // Get the forms themselves
-    const detailedInquiryForm = document.getElementById('inquiry-form-detailed');
-    const simplifiedInquiryForm = document.getElementById('inquiry-form-simplified');
-
-
-    // Add an event listener to the mobile menu button
-    if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', () => {
-            // Toggle the 'hidden' class on the mobile menu to show/hide it
             mobileMenu.classList.toggle('hidden');
         });
-    }
 
-    // Close mobile menu when a link is clicked (for smooth scrolling)
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden'); // Hide the menu
-        });
-    });
-
-    // Define sections and their corresponding header text colors
-    const sections = [
-        { id: 'hero', textColor: 'text-gray-800', buttonColor: 'text-gray-800' },
-        { id: 'about', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
-        { id: 'how-it-works', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
-        { id: 'services', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
-        { id: 'testimonials', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
-        { id: 'contact', textColor: 'text-white', buttonColor: 'text-white' },
-        { id: 'terms-conditions', textColor: 'text-white', buttonColor: 'text-white' }
-    ];
-
-    // Function to update header text color based on active section
-    const updateHeaderColors = () => {
-        let activeSectionId = 'hero'; // Default to hero if at the top
-
-        // Find the section currently in view
-        for (let i = sections.length - 1; i >= 0; i--) {
-            const sectionElement = document.getElementById(sections[i].id);
-            if (sectionElement) {
-                const rect = sectionElement.getBoundingClientRect();
-                // Consider a section active if its top is within 50% of the viewport height
-                // and its bottom is below the top of the viewport
-                if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
-                    activeSectionId = sections[i].id;
-                    break;
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
-            }
-        }
-
-        const activeSection = sections.find(sec => sec.id === activeSectionId);
-
-        if (activeSection) {
-            // Apply text color to desktop navigation links
-            desktopNavLinks.forEach(link => {
-                link.classList.remove('text-white', 'text-gray-800'); // Remove both potential classes
-                link.classList.add(activeSection.textColor);
             });
+        });
 
-            // Apply text color to mobile menu button
-            mobileMenuButton.classList.remove('text-white', 'text-gray-700'); // Remove both potential classes
-            mobileMenuButton.classList.add(activeSection.buttonColor);
-        }
-    };
+        // --- Form Toggle Logic ---
+        const btnDetailed = document.getElementById('btn-detailed');
+        const btnSimplified = document.getElementById('btn-simplified');
+        const detailedFormSection = document.getElementById('detailed-form-section');
+        const simplifiedFormSection = document.getElementById('simplified-form-section');
 
-    // Listen for scroll events to update header colors
-    window.addEventListener('scroll', updateHeaderColors);
-
-    // Call it once on load to set initial colors
-    updateHeaderColors();
-
-    // Function to switch between detailed and simplified forms
-    const switchForm = (formType) => {
-        if (formType === 'detailed') {
-            btnDetailed.classList.add('bg-blue-800', 'text-white');
-            btnDetailed.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-            btnSimplified.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-            btnSimplified.classList.remove('bg-blue-800', 'text-white');
-
+        btnDetailed.addEventListener('click', () => {
             detailedFormSection.classList.remove('hidden');
             simplifiedFormSection.classList.add('hidden');
-        } else if (formType === 'simplified') {
-            btnSimplified.classList.add('bg-blue-800', 'text-white');
-            btnSimplified.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-            btnDetailed.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-            btnDetailed.classList.remove('bg-blue-800', 'text-white');
+            btnDetailed.classList.add('bg-blue-800', 'text-white');
+            btnDetailed.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnSimplified.classList.remove('bg-blue-800', 'text-white');
+            btnSimplified.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+        });
 
+        btnSimplified.addEventListener('click', () => {
             simplifiedFormSection.classList.remove('hidden');
             detailedFormSection.classList.add('hidden');
+            btnSimplified.classList.add('bg-blue-800', 'text-white');
+            btnSimplified.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnDetailed.classList.remove('bg-blue-800', 'text-white');
+            btnDetailed.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+        });
+
+        // --- Custom Message Box Functions ---
+        const messageBoxContainer = document.getElementById('message-box-container');
+        const messageBox = document.getElementById('message-box');
+        const messageBoxTitle = document.getElementById('message-box-title');
+        const messageBoxContent = document.getElementById('message-box-content');
+        const messageBoxCloseButton = document.getElementById('message-box-close');
+
+        function showMessageBox(title, message, type = 'info') {
+            messageBoxTitle.textContent = title;
+            messageBoxContent.textContent = message;
+            messageBox.className = 'message-box'; // Reset classes
+            if (type === 'success') {
+                messageBox.classList.add('success');
+            } else if (type === 'error') {
+                messageBox.classList.add('error');
+            }
+            messageBoxContainer.classList.remove('hidden');
         }
-    };
 
-    // Event listeners for form type buttons
-    if (btnDetailed) {
-        btnDetailed.addEventListener('click', () => switchForm('detailed'));
-    }
-    if (btnSimplified) {
-        btnSimplified.addEventListener('click', () => switchForm('simplified'));
-    }
+        messageBoxCloseButton.addEventListener('click', () => {
+            messageBoxContainer.classList.add('hidden');
+        });
 
-    // Handle Detailed Inquiry Form Submission
-    if (detailedInquiryForm) {
-        detailedInquiryForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        // Close message box if clicked outside (optional)
+        messageBoxContainer.addEventListener('click', (event) => {
+            if (event.target === messageBoxContainer) {
+                messageBoxContainer.classList.add('hidden');
+            }
+        });
 
-            const userName = document.getElementById('user-name-detailed').value;
-            const userEmail = document.getElementById('user-email-detailed').value;
-            const inquiryDetails = document.getElementById('inquiry-details').value;
 
-            if (!userName || !userEmail || !inquiryDetails) {
-                alert('Please fill in your Name, Email, and provide details about your travel plans.');
-                return;
+        // --- Form Submission Logic ---
+        const detailedForm = document.getElementById('inquiry-form-detailed');
+        const simplifiedForm = document.getElementById('inquiry-form-simplified');
+        const submitDetailedBtn = document.getElementById('submit-detailed');
+        const submitSimplifiedBtn = document.getElementById('submit-simplified');
+
+        // Function to handle form submission
+        async function handleFormSubmission(event, formType) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            // Show loading indicator
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            let payload = {};
+            let subject = '';
+
+            if (formType === 'detailed') {
+                // Map detailed form fields to Netlify Function expected fields
+                payload = {
+                    name: data['user-name'],
+                    email: data['user-email'],
+                    subject: 'New Detailed Inquiry from Fly Easy Website', // Fixed subject for detailed form
+                    message: data['inquiry-details'],
+                };
+            } else if (formType === 'simplified') {
+                // Map simplified form fields to Netlify Function expected fields
+                subject = 'New Simplified Inquiry from Fly Easy Website'; // Fixed subject for simplified form
+                payload = {
+                    name: data['user-name'],
+                    email: data['user-email'],
+                    subject: subject,
+                    message: `
+                        Departure: ${data['departure-place'] || 'N/A'}
+                        Destination: ${data['destination-place'] || 'N/A'}
+                        Travel Date: ${data['travel-date'] || 'N/A'}
+                        Return Date: ${data['return-date'] || 'N/A'}
+                    `.trim(), // Trim to remove leading/trailing whitespace
+                };
             }
 
-            const formData = {
-                userName,
-                userEmail,
-                inquiryDetails,
-                formType: 'Detailed Inquiry'
-            };
-
             try {
-                // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
-                const response = await fetch('https://flyeasy-backend-api.onrender.com:10000/send-flight-inquiry', {
+                const response = await fetch('/.netlify/functions/send-email', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert(result.message);
-                    detailedInquiryForm.reset();
+                    showMessageBox('Success!', 'Thank you for your message! We will get back to you soon.', 'success');
+                    form.reset(); // Clear the form
                 } else {
-                    alert(`Error: ${result.message || 'Something went wrong.'}`);
+                    showMessageBox('Error!', `Failed to send message: ${result.message || 'Something went wrong.'}`, 'error');
                 }
             } catch (error) {
-                console.error('Network error or server issue:', error);
-                alert('Could not connect to the server. Please ensure the backend server is running and accessible.');
+                console.error('Network error or unexpected issue:', error);
+                showMessageBox('Error!', 'Could not send message. Please check your internet connection and try again later.', 'error');
+            } finally {
+                // Re-enable the submit button
+                submitButton.textContent = formType === 'detailed' ? 'Send Detailed Inquiry' : 'Send Simplified Inquiry';
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
             }
-        });
-    }
+        }
 
-    // Handle Simplified Inquiry Form Submission
-    if (simplifiedInquiryForm) {
-        simplifiedInquiryForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        // Attach event listeners to both forms
+        detailedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'detailed'));
+        simplifiedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'simplified'));
 
-            const userName = document.getElementById('user-name-simplified').value;
-            const userEmail = document.getElementById('user-email-simplified').value;
-            const departurePlace = document.getElementById('departure-place-simplified').value;
-            const destinationPlace = document.getElementById('destination-place-simplified').value;
-            const travelDate = document.getElementById('travel-date-simplified').value;
-            const returnDate = document.getElementById('return-date-simplified').value;
-
-            if (!userName || !userEmail || !departurePlace || !destinationPlace || !travelDate) {
-                alert('Please fill in your Name, Email, Departure Place, Destination Place, and Date of Travel.');
-                return;
-            }
-
-            // Date Validation for Simplified Form
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const travDate = new Date(travelDate);
-            travDate.setHours(0, 0, 0, 0);
-
-            if (travDate < today) {
-                alert('Date of Travel cannot be in the past. Please select a date from today onwards.');
-                return;
-            }
-
-            if (returnDate) {
-                const retDate = new Date(returnDate);
-                retDate.setHours(0, 0, 0, 0);
-                if (retDate < travDate) {
-                    alert('Date of Return cannot be earlier than the Date of Travel.');
-                    return;
-                }
-            }
-
-            const formData = {
-                userName,
-                userEmail,
-                departurePlace,
-                destinationPlace,
-                travelDate,
-                returnDate: returnDate || 'N/A', // Send 'N/A' if optional return date is empty
-                formType: 'Simplified Inquiry'
-            };
-
-            try {
-                // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
-                const response = await fetch('https://flyeasy-backend-api.onrender.com:10000/send-flight-inquiry', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert(result.message);
-                    simplifiedInquiryForm.reset();
-                } else {
-                    alert(`Error: ${result.message || 'Something went wrong.'}`);
-                }
-            } catch (error) {
-                console.error('Network error or server issue:', error);
-                alert('Could not connect to the server. Please ensure the backend server is running and accessible.');
-            }
-        });
-    }
-});
     </script>
 </body>
 </html>
