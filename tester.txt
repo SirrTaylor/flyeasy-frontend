@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly Easy - Your Tailor-Made Itineraries Worldwide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        /* Custom styles for background image and overlay */
+        .hero-section {
+            /* Using a placeholder that can be replaced with a more relevant image */
+            background-image: url('https://placehold.co/1920x800/2a3a4a/ffffff?text=Craft+Your+Journey');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Smooth scroll for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom CSS for blurry header background - now a bright, almost white */
+        .blurry-header {
+            background-color: rgba(255, 255, 255, 0.9); /* Bright, almost opaque white with slight transparency for blur */
+            backdrop-filter: blur(8px); /* Blurry effect */
+            -webkit-backdrop-filter: blur(8px); /* For Safari */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section - Opaque blurry background -->
+    <header class="blurry-header py-4 px-4 fixed w-full z-50 transition-colors duration-300 ease-in-out">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo - Increased size to h-24 -->
+            <a href="#" class="block h-24">
+                <img src="Flyeasy.png" alt="Fly Easy Logo" class="h-full w-auto object-contain">
+            </a>
+
+
+            <!-- Desktop Navigation Menu - Always visible on medium and larger screens -->
+            <nav id="desktop-nav" class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">Home</a>
+                <a href="#about" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">About Us</a>
+                <a href="#how-it-works" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">How It Works</a>
+                <a href="#services" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">Our Services</a>
+                <a href="#testimonials" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">Testimonials</a>
+                <a href="#contact" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">Contact</a>
+                <a href="#terms-conditions" class="nav-link text-gray-800 hover:text-orange-600 transition duration-300">Terms & Conditions</a>
+            </nav>
+
+            <!-- Mobile Menu Button (Hamburger) - Visible only on small screens -->
+            <button id="mobile-menu-button" class="md:hidden block text-gray-800 hover:text-orange-600 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default, slides out on click) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t border-gray-200 absolute w-full left-0 shadow-lg">
+            <nav class="flex flex-col space-y-4">
+                <a href="#hero" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">About Us</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">How It Works</a>
+                <a href="#services" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">Our Services</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">Testimonials</a>
+                <a href="#contact" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">Contact</a>
+                <a href="#terms-conditions" class="text-gray-700 hover:text-orange-600 transition duration-300 py-2">Terms & Conditions</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Updated for tailor-made itineraries -->
+    <section id="hero" class="hero-section text-white py-32 md:py-48 relative overflow-hidden">
+        <div class="hero-overlay"></div>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Your Journey, Perfectly Crafted.
+            </h1>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-fade-in-up delay-100">
+                At Fly Easy, we specialize in tailor-made itineraries designed just for you. Tell us your travel dreams, and we'll make them a reality.
+            </p>
+
+            <!-- Inquiry Form Type Selection Buttons -->
+            <div class="flex justify-center mb-8">
+                <button id="btn-detailed" class="px-6 py-3 rounded-l-lg font-semibold text-lg transition duration-300 ease-in-out
+                                                 bg-blue-800 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+                    Detailed Inquiry
+                </button>
+                <button id="btn-simplified" class="px-6 py-3 rounded-r-lg font-semibold text-lg transition duration-300 ease-in-out
+                                                  bg-gray-200 text-gray-800 hover:bg-gray-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                    Simplified Inquiry
+                </button>
+            </div>
+
+            <!-- Inquiry Forms Container -->
+            <div class="max-w-4xl mx-auto">
+                <!-- Detailed Inquiry Form (Default) -->
+                <div id="detailed-form-section" class="bg-white bg-opacity-90 p-8 rounded-xl shadow-lg transform transition-all duration-500 hover:scale-[1.01]">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Send Your Detailed Inquiry</h2>
+                    <form id="inquiry-form-detailed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="user-name-detailed" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Your Name</label>
+                            <input type="text" id="user-name-detailed" name="user-name" placeholder="John Doe" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="user-email-detailed" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Your Email (Mandatory)</label>
+                            <input type="email" id="user-email-detailed" name="user-email" placeholder="your.email@example.com" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="inquiry-details" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Tell us about your travel plans (e.g., destination, dates, preferences)</label>
+                            <textarea id="inquiry-details" name="inquiry-details" rows="5" placeholder="I'm planning a trip to Paris in October for 7 days, looking for a romantic getaway with good food options..." required
+                                      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800 resize-y"></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit"
+                                    class="w-full bg-blue-800 text-white py-3 px-6 rounded-lg font-semibold text-lg
+                                           hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2
+                                           transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                                Send Detailed Inquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Simplified Inquiry Form (Hidden by default) -->
+                <div id="simplified-form-section" class="bg-white bg-opacity-90 p-8 rounded-xl shadow-lg transform transition-all duration-500 hover:scale-[1.01] hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Send Your Simplified Inquiry</h2>
+                    <form id="inquiry-form-simplified" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="user-name-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Your Name</label>
+                            <input type="text" id="user-name-simplified" name="user-name" placeholder="John Doe" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="user-email-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Your Email (Mandatory)</label>
+                            <input type="email" id="user-email-simplified" name="user-email" placeholder="your.email@example.com" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="departure-place-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Departure Place</label>
+                            <input type="text" id="departure-place-simplified" name="departure-place" placeholder="e.g., Harare" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="destination-place-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Destination Place</label>
+                            <input type="text" id="destination-place-simplified" name="destination-place" placeholder="e.g., London" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="travel-date-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Date of Travel</label>
+                            <input type="date" id="travel-date-simplified" name="travel-date" required
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div>
+                            <label for="return-date-simplified" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Date of Return (Optional)</label>
+                            <input type="date" id="return-date-simplified" name="return-date"
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 transition duration-200 text-gray-800">
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit"
+                                    class="w-full bg-blue-800 text-white py-3 px-6 rounded-lg font-semibold text-lg
+                                           hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2
+                                           transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                                Send Simplified Inquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section - Updated company name and added regulator info -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">About Fly Easy</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+                <div class="md:w-1/2 text-left">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Founded in the heart of Zimbabwe, Fly Easy is dedicated to making global travel accessible and affordable for everyone. We understand the complexities of finding the best travel experiences, and our mission is to simplify this process for you by crafting personalized itineraries.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Our team of expert travel consultants will work closely with you to understand your preferences, budget, and dreams, then meticulously plan every detail of your journey, from unique accommodations to unforgettable activities.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Whether you're planning a business trip, a family vacation, or an adventurous solo journey, Fly Easy is your reliable partner for discovering and experiencing the best of any corner of the globe.
+                    </p>
+
+                    <!-- List of Regulators -->
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">List of Regulators</h3>
+                    <ul class="list-disc list-inside text-gray-700 text-lg leading-relaxed">
+                        <li>Registered with IATA (International Air Transport Association)</li>
+                        <li>Registered with ZTA (Zimbabwe Tourism Authority)</li>
+                        <li>An active affiliate of AZTA (Association of Zimbabwe Travel Agencies)</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/a0d9e0/ffffff?text=About+Us" alt="About Us Image" class="rounded-xl shadow-lg w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section - Updated background and icon colors -->
+    <section id="how-it-works" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-800 text-5xl mb-6">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">1. Send Your Inquiry</h3>
+                    <p class="text-gray-700">
+                        Fill out our simple form with your travel aspirations, preferred dates, and any special requests.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-800 text-5xl mb-6">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">2. We Craft Your Itinerary</h3>
+                    <p class="text-gray-700">
+                        Our travel experts will design a personalized itinerary, including flights, accommodation, and activities.
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-800 text-5xl mb-6">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">3. Confirm & Travel</h3>
+                    <p class="text-gray-700">
+                        Review your custom plan, confirm your booking, and embark on your perfectly organized journey!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - New Section Added -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Our Travel Services</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-10 max-w-3xl mx-auto">
+                Our Agency's main objective is to provide professional travel services acting as an effective link between the customers we serve and the principal travel suppliers such as airlines, hotels, road transport operators, tour and cruise providers. For this purpose, we have employed a team of highly qualified and experienced Travel Consultants with the necessary knowledge to handle any aspect of travel.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <!-- Service: Air Reservations -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Air Reservations</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Plan itineraries with at least three options (domestic/international).</li>
+                        <li>Provide quotes, discuss hidden stops, layovers, restrictions, and special conditions for changes, cancellation, and refunds.</li>
+                        <li>Share baggage allowance and excess baggage charges.</li>
+                        <li>Issue and deliver tickets, provide advanced seating plans.</li>
+                    </ul>
+                </div>
+                <!-- Service: Hotel Accommodation -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Hotel Accommodation</h3>
+                    <p class="text-gray-700">
+                        We reserve, pay, and issue confirmation vouchers to our customers for various hotels both domestic and international.
+                    </p>
+                </div>
+                <!-- Service: Tours, Excursions, Inclusive Tours -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Tours, Excursions, Inclusive Tours</h3>
+                    <p class="text-gray-700">
+                        We plan and arrange tours and excursions both inbound and outbound and sell Inclusive and Packaged tours.
+                    </p>
+                </div>
+                <!-- Service: Car Hire Services -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Car Hire Services</h3>
+                    <p class="text-gray-700">
+                        We facilitate, book, and confirm car rental services anywhere in the world.
+                    </p>
+                </div>
+                <!-- Service: Airport Services -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Airport Services</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Provide meet and assist services, including VIP Services at the airport.</li>
+                        <li>Facilitate Airport transfer services from designated points to and from airports to hotels anywhere in the world.</li>
+                        <li>Provide information on conditions for access to airport lounges for non-qualifying tickets, accept payments, and provide vouchers.</li>
+                    </ul>
+                </div>
+                <!-- Service: Visa Processing -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Visa Processing</h3>
+                    <p class="text-gray-700">
+                        We provide assistance with visa process information in line with existing immigration rules. Where immigration rules require clients' personal appearance, we provide all the necessary information to enable a speedy processing of the visa by the relevant authorities.
+                    </p>
+                </div>
+                <!-- Service: Travel Insurance -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Travel Insurance</h3>
+                    <p class="text-gray-700 mb-2">
+                        We provide travel insurance to cover any of the following travel risks:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Ticket Loss.</li>
+                        <li>Travel Interruptions.</li>
+                        <li>Flight Delays and Cancellations.</li>
+                        <li>Baggage Irregularities and Baggage Loss.</li>
+                        <li>Medical Care resulting from accidents or general sickness.</li>
+                    </ul>
+                </div>
+                <!-- Service: Travel Information -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 transition duration-300 hover:shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Travel Information</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Provide destination information including weather conditions and information on security issues.</li>
+                        <li>Provide periodic information on special fare offers by various suppliers including airlines and hotels.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section - Updated background of cards -->
+    <section id="testimonials" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-md p-8 text-left transition duration-300 hover:shadow-lg">
+                    <p class="text-gray-700 italic mb-6">
+                        "Fly Easy found me an incredible deal for my trip to Tokyo. I saved so much money, and the process was incredibly smooth. Highly recommend!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/87CEEB/ffffff?text=JD" alt="Customer Avatar" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-semibold text-gray-800">Jane Doe</p>
+                            <p class="text-sm text-gray-600">Frequent Traveler</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 - Updated company name -->
+                <div class="bg-white rounded-xl shadow-md p-8 text-left transition duration-300 hover:shadow-lg">
+                    <p class="text-gray-700 italic mb-6">
+                        "As someone based in Poland, I often look for affordable flights. Fly Easy consistently delivers the best prices, making my travel plans much easier."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/87CEEB/ffffff?text=MK" alt="Customer Avatar" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-semibold text-gray-800">Marek Kowalski</p>
+                            <p class="text-sm text-gray-600">Business Traveller</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 - Updated company name -->
+                <div class="bg-white rounded-xl shadow-md p-8 text-left transition duration-300 hover:shadow-lg">
+                    <p class="text-gray-700 italic mb-6">
+                        "I was skeptical at first, but Fly Easy truly found me the cheapest flight to New York. Their service is top-notch and very user-friendly."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/87CEEB/ffffff?text=AS" alt="Customer Avatar" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-semibold text-gray-800">Anna Smith</p>
+                            <p class="text-sm text-gray-600">Adventure Seeker</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Section - Updated contact details -->
+    <section id="contact" class="py-16 md:py-24 bg-blue-800 text-white text-center">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Plan Your Perfect Trip?</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                Send us your inquiry today and let Fly Easy craft your dream itinerary.
+            </p>
+            <a href="#hero" class="bg-white text-blue-800 py-3 px-8 rounded-lg font-semibold text-lg
+                                   hover:bg-orange-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2
+                                   transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                Send Your Inquiry Now
+            </a>
+            <p class="mt-10 text-lg">
+                Have questions? Reach out to us:
+            </p>
+            <p class="mt-2 text-lg flex items-center justify-center">
+                <a href="mailto:flyeasytravel.co.zw" class="underline hover:text-orange-200">flyeasytravel.co.zw</a>
+            </p>
+            <div class="mt-4 text-lg flex flex-col md:flex-row items-center justify-center gap-4">
+                <div class="flex items-center">
+                    <img src="telephone.png" alt="Phone Icon" class="w-6 h-6 mr-2 invert"> <!-- invert for white icon -->
+                    <span>Landline:</span>
+                    <a href="tel:+2638644286381" class="underline hover:text-orange-200 ml-2">+263 8644 286 381</a>,
+                    <a href="tel:+2638644096767" class="underline hover:text-orange-200 ml-2">+263 8644 096 767</a>
+                </div>
+                <div class="flex items-center">
+                    <!--<img src="whatsapp.png" alt="WhatsApp Icon" class="w-6 h-6 mr-2 invert"-->
+                    <a href="https://wa.me/263773261396" target="_blank" class="ml-2">
+                        <img src="whatsapp.png" alt="WhatsApp" class="w-6 h-6 mr-2 invert inline-block" class="underline hover:text-orange-200">
+                    </a> <!-- invert for white icon -->
+                    <span>Call or WhatsApp us:</span>
+                    <a href="tel:+263773261396" class="underline hover:text-orange-200 ml-2">+263 773 261 396</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Section - Background color changed to match Contact tab and moved after Contact -->
+    <section id="terms-conditions" class="py-8 bg-blue-800 text-white">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Terms and Conditions</h2>
+
+            <p class="text-white leading-relaxed mb-6">
+                <strong>Subject to availability & confirmation on the time of ticketing.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section - Updated company name and added Terms & Conditions link -->
+    <footer class="bg-gray-800 text-gray-300 py-8 px-6 md:px-12">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2025 Fly Easy. All rights reserved.</p>
+                <p class="text-sm">Based in Zimbabwe, serving the world.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#terms-conditions" class="hover:text-white transition duration-300">Terms of Service</a>
+                <a href="#" class="hover:text-white transition duration-300">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript File Link -->
+    <script>
+        // script.js
+    document.addEventListener('DOMContentLoaded', () => {
+    // Get the mobile menu button and the mobile menu itself
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const desktopNavLinks = document.querySelectorAll('#desktop-nav .nav-link');
+    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+    const header = document.querySelector('header');
+
+    // Get the form type selection buttons
+    const btnDetailed = document.getElementById('btn-detailed');
+    const btnSimplified = document.getElementById('btn-simplified');
+
+    // Get the form sections
+    const detailedFormSection = document.getElementById('detailed-form-section');
+    const simplifiedFormSection = document.getElementById('simplified-form-section');
+
+    // Get the forms themselves
+    const detailedInquiryForm = document.getElementById('inquiry-form-detailed');
+    const simplifiedInquiryForm = document.getElementById('inquiry-form-simplified');
+
+
+    // Add an event listener to the mobile menu button
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            // Toggle the 'hidden' class on the mobile menu to show/hide it
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Close mobile menu when a link is clicked (for smooth scrolling)
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden'); // Hide the menu
+        });
+    });
+
+    // Define sections and their corresponding header text colors
+    const sections = [
+        { id: 'hero', textColor: 'text-gray-800', buttonColor: 'text-gray-800' },
+        { id: 'about', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
+        { id: 'how-it-works', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
+        { id: 'services', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
+        { id: 'testimonials', textColor: 'text-gray-800', buttonColor: 'text-gray-700' },
+        { id: 'contact', textColor: 'text-white', buttonColor: 'text-white' },
+        { id: 'terms-conditions', textColor: 'text-white', buttonColor: 'text-white' }
+    ];
+
+    // Function to update header text color based on active section
+    const updateHeaderColors = () => {
+        let activeSectionId = 'hero'; // Default to hero if at the top
+
+        // Find the section currently in view
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const sectionElement = document.getElementById(sections[i].id);
+            if (sectionElement) {
+                const rect = sectionElement.getBoundingClientRect();
+                // Consider a section active if its top is within 50% of the viewport height
+                // and its bottom is below the top of the viewport
+                if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
+                    activeSectionId = sections[i].id;
+                    break;
+                }
+            }
+        }
+
+        const activeSection = sections.find(sec => sec.id === activeSectionId);
+
+        if (activeSection) {
+            // Apply text color to desktop navigation links
+            desktopNavLinks.forEach(link => {
+                link.classList.remove('text-white', 'text-gray-800'); // Remove both potential classes
+                link.classList.add(activeSection.textColor);
+            });
+
+            // Apply text color to mobile menu button
+            mobileMenuButton.classList.remove('text-white', 'text-gray-700'); // Remove both potential classes
+            mobileMenuButton.classList.add(activeSection.buttonColor);
+        }
+    };
+
+    // Listen for scroll events to update header colors
+    window.addEventListener('scroll', updateHeaderColors);
+
+    // Call it once on load to set initial colors
+    updateHeaderColors();
+
+    // Function to switch between detailed and simplified forms
+    const switchForm = (formType) => {
+        if (formType === 'detailed') {
+            btnDetailed.classList.add('bg-blue-800', 'text-white');
+            btnDetailed.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnSimplified.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnSimplified.classList.remove('bg-blue-800', 'text-white');
+
+            detailedFormSection.classList.remove('hidden');
+            simplifiedFormSection.classList.add('hidden');
+        } else if (formType === 'simplified') {
+            btnSimplified.classList.add('bg-blue-800', 'text-white');
+            btnSimplified.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnDetailed.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            btnDetailed.classList.remove('bg-blue-800', 'text-white');
+
+            simplifiedFormSection.classList.remove('hidden');
+            detailedFormSection.classList.add('hidden');
+        }
+    };
+
+    // Event listeners for form type buttons
+    if (btnDetailed) {
+        btnDetailed.addEventListener('click', () => switchForm('detailed'));
+    }
+    if (btnSimplified) {
+        btnSimplified.addEventListener('click', () => switchForm('simplified'));
+    }
+
+    // Handle Detailed Inquiry Form Submission
+    if (detailedInquiryForm) {
+        detailedInquiryForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const userName = document.getElementById('user-name-detailed').value;
+            const userEmail = document.getElementById('user-email-detailed').value;
+            const inquiryDetails = document.getElementById('inquiry-details').value;
+
+            if (!userName || !userEmail || !inquiryDetails) {
+                alert('Please fill in your Name, Email, and provide details about your travel plans.');
+                return;
+            }
+
+            const formData = {
+                userName,
+                userEmail,
+                inquiryDetails,
+                formType: 'Detailed Inquiry'
+            };
+
+            try {
+                // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
+                const response = await fetch('http://localhost:3000/api/send-flight-inquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    detailedInquiryForm.reset();
+                } else {
+                    alert(`Error: ${result.message || 'Something went wrong.'}`);
+                }
+            } catch (error) {
+                console.error('Network error or server issue:', error);
+                alert('Could not connect to the server. Please ensure the backend server is running and accessible.');
+            }
+        });
+    }
+
+    // Handle Simplified Inquiry Form Submission
+    if (simplifiedInquiryForm) {
+        simplifiedInquiryForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const userName = document.getElementById('user-name-simplified').value;
+            const userEmail = document.getElementById('user-email-simplified').value;
+            const departurePlace = document.getElementById('departure-place-simplified').value;
+            const destinationPlace = document.getElementById('destination-place-simplified').value;
+            const travelDate = document.getElementById('travel-date-simplified').value;
+            const returnDate = document.getElementById('return-date-simplified').value;
+
+            if (!userName || !userEmail || !departurePlace || !destinationPlace || !travelDate) {
+                alert('Please fill in your Name, Email, Departure Place, Destination Place, and Date of Travel.');
+                return;
+            }
+
+            // Date Validation for Simplified Form
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const travDate = new Date(travelDate);
+            travDate.setHours(0, 0, 0, 0);
+
+            if (travDate < today) {
+                alert('Date of Travel cannot be in the past. Please select a date from today onwards.');
+                return;
+            }
+
+            if (returnDate) {
+                const retDate = new Date(returnDate);
+                retDate.setHours(0, 0, 0, 0);
+                if (retDate < travDate) {
+                    alert('Date of Return cannot be earlier than the Date of Travel.');
+                    return;
+                }
+            }
+
+            const formData = {
+                userName,
+                userEmail,
+                departurePlace,
+                destinationPlace,
+                travelDate,
+                returnDate: returnDate || 'N/A', // Send 'N/A' if optional return date is empty
+                formType: 'Simplified Inquiry'
+            };
+
+            try {
+                // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
+                const response = await fetch('http://localhost:3000/api/send-flight-inquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    simplifiedInquiryForm.reset();
+                } else {
+                    alert(`Error: ${result.message || 'Something went wrong.'}`);
+                }
+            } catch (error) {
+                console.error('Network error or server issue:', error);
+                alert('Could not connect to the server. Please ensure the backend server is running and accessible.');
+            }
+        });
+    }
+});
+    </script>
+</body>
+</html>
