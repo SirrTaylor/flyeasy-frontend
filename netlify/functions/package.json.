@@ -1,0 +1,9 @@
+{
+  "name": "netlify-email-functions",
+  "version": "1.0.0",
+  "description": "Netlify function to send emails",
+  "main": "send-email.js",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}
