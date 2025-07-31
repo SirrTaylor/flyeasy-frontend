@@ -600,7 +600,7 @@
 
             try {
                 // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
-                const response = await fetch('http://localhost:3000/api/send-flight-inquiry', {
+                const response = await fetch('https://flyeasy-backend-api.onrender.com/send-flight-inquiry', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
@@ -670,7 +670,7 @@
 
             try {
                 // IMPORTANT: In a real deployment, replace 'http://localhost:3000' with your actual deployed backend URL
-                const response = await fetch('http://localhost:3000/api/send-flight-inquiry', {
+                const response = await fetch('https://flyeasy-backend-api.onrender.com/send-flight-inquiry', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
