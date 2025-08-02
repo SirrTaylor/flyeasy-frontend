@@ -620,7 +620,7 @@ const submitSimplifiedBtn = document.getElementById('submit-simplified');
 // Define your Render backend API URL here
 // IMPORTANT: Replace 'https://YOUR_RENDER_BACKEND_URL' with the actual URL
 // that Render provides after you deploy your backend service.
-const RENDER_API_URL = 'https://YOUR_RENDER_BACKEND_URL'; // e.g., 'https://flyeasy-email-api.onrender.com'
+const RENDER_API_URL = 'https://flyeasy-email-api.onrender.com';
 
 // Function to handle form submission
 async function handleFormSubmission(event, formType) {
@@ -670,7 +670,7 @@ async function handleFormSubmission(event, formType) {
     try {
         // *** THIS IS THE UPDATED LINE ***
         // It now points to your Render backend API endpoint
-        const response = await fetch(`${RENDER_API_URL}/send-email`, {
+       const response = await fetch(`${RENDER_API_URL}/api/send-flight-inquiry`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -704,4 +704,5 @@ async function handleFormSubmission(event, formType) {
     </script>
 </body>
 </html>
+
 
