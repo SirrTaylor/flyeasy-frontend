@@ -538,7 +538,7 @@
     </div>
 
     <script>
-// --- Mobile Menu Toggle Logic ---
+        // --- Mobile Menu Toggle Logic ---
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
@@ -620,7 +620,7 @@ const submitSimplifiedBtn = document.getElementById('submit-simplified');
 // Define your Render backend API URL here
 // IMPORTANT: Replace 'https://YOUR_RENDER_BACKEND_URL' with the actual URL
 // that Render provides after you deploy your backend service.
-const RENDER_API_URL = 'https://flyeasy-email-api.onrender.com';
+const RENDER_API_URL = 'https://flyeasy-email-api.onrender.com'; // Confirmed URL
 
 // Function to handle form submission
 async function handleFormSubmission(event, formType) {
@@ -641,36 +641,30 @@ async function handleFormSubmission(event, formType) {
     });
 
     let payload = {};
-    let subject = '';
+    // The subject is now handled entirely by the backend based on formType
+    // The backend also expects userName, userEmail, and formType directly in the payload
 
     if (formType === 'detailed') {
-        // Map detailed form fields to backend expected fields
         payload = {
-            name: data['user-name'],
-            email: data['user-email'],
-            subject: 'New Detailed Inquiry from Fly Easy Website', // Fixed subject for detailed form
-            message: data['inquiry-details'],
+            userName: data['user-name'], // Changed from 'name' to 'userName'
+            userEmail: data['user-email'], // Changed from 'email' to 'userEmail'
+            formType: 'Detailed Inquiry', // Explicitly add formType
+            inquiryDetails: data['inquiry-details'],
         };
     } else if (formType === 'simplified') {
-        // Map simplified form fields to backend expected fields
-        subject = 'New Simplified Inquiry from Fly Easy Website'; // Fixed subject for simplified form
         payload = {
-            name: data['user-name'],
-            email: data['user-email'],
-            subject: subject,
-            message: `
-                Departure: ${data['departure-place'] || 'N/A'}
-                Destination: ${data['destination-place'] || 'N/A'}
-                Travel Date: ${data['travel-date'] || 'N/A'}
-                Return Date: ${data['return-date'] || 'N/A'}
-            `.trim(), // Trim to remove leading/trailing whitespace
+            userName: data['user-name'], // Changed from 'name' to 'userName'
+            userEmail: data['user-email'], // Changed from 'email' to 'userEmail'
+            formType: 'Simplified Inquiry', // Explicitly add formType
+            departurePlace: data['departure-place'],
+            destinationPlace: data['destination-place'],
+            travelDate: data['travel-date'],
+            returnDate: data['return-date'],
         };
     }
 
     try {
-        // *** THIS IS THE UPDATED LINE ***
-        // It now points to your Render backend API endpoint
-       const response = await fetch(`${RENDER_API_URL}/api/send-flight-inquiry`, {
+        const response = await fetch(`${RENDER_API_URL}/api/send-flight-inquiry`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -697,12 +691,13 @@ async function handleFormSubmission(event, formType) {
     }
 }
 
-    // Attach event listeners to both forms
-    detailedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'detailed'));
-    simplifiedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'simplified'));
+// Attach event listeners to both forms
+detailedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'detailed'));
+simplifiedForm.addEventListener('submit', (event) => handleFormSubmission(event, 'simplified'));
 
     </script>
 </body>
 </html>
+
 
 
